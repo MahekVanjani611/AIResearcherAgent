@@ -20,15 +20,13 @@ import uuid
 try:
     import bcrypt
 except ImportError:
-    print("⚠️  bcrypt not installed. Installing...")
-    import subprocess
-    subprocess.check_call(["pip", "install", "bcrypt"])
-    import bcrypt
+    bcrypt = None
 
 
 USERS_FILE = Path("users.json")
 SESSIONS_FILE = Path("sessions.json")
 MAX_SESSION_VALIDITY = 7 * 24 * 60 * 60  # 7 days in seconds
+PBKDF2_ITERATIONS = 390000
 
 
 class AuthManager:
@@ -68,11 +66,34 @@ class AuthManager:
     
     def hash_password(self, password: str) -> str:
         """Hash password using bcrypt"""
-        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        if bcrypt is not None:
+            return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+        salt = uuid.uuid4().hex
+        derived = hashlib.pbkdf2_hmac(
+            "sha256",
+            password.encode("utf-8"),
+            salt.encode("utf-8"),
+            PBKDF2_ITERATIONS,
+        )
+        return f"pbkdf2_sha256${PBKDF2_ITERATIONS}${salt}${derived.hex()}"
     
     def verify_password(self, password: str, hashed: str) -> bool:
         """Verify password against hash"""
         try:
+            if hashed.startswith("pbkdf2_sha256$"):
+                _, iterations, salt, expected_hash = hashed.split("$", 3)
+                derived = hashlib.pbkdf2_hmac(
+                    "sha256",
+                    password.encode("utf-8"),
+                    salt.encode("utf-8"),
+                    int(iterations),
+                ).hex()
+                return hmac.compare_digest(derived, expected_hash)
+
+            if bcrypt is None:
+                return False
+
             return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
         except Exception:
             return False
