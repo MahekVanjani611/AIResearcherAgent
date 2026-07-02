@@ -1,0 +1,21 @@
+{
+  "session_id": "426ad9c3-8fb4-4906-962b-6e9cdd8d18e0",
+  "user_id": "MAHEK",
+  "created_at": "2026-07-03T00:36:47.127505",
+  "last_accessed": "2026-07-03T00:39:08.769390",
+  "conversation_history": [
+    {
+      "turn_id": "a6ec0707-e39c-4a94-bc58-92fdd3786b5d",
+      "timestamp": "2026-07-03T00:39:08.773748",
+      "role": "user",
+      "content": "What happens if the LLM gives incorrect medical advice?",
+      "context_used": [],
+      "metadata": {}
+    }
+  ],
+  "summary": "",
+  "important_facts": [],
+  "queries_count": 1,
+  "total_tokens_used": 0,
+  "memory_metrics": []
+}

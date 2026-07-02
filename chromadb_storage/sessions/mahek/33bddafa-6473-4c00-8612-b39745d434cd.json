@@ -1,0 +1,21 @@
+{
+  "session_id": "33bddafa-6473-4c00-8612-b39745d434cd",
+  "user_id": "mahek",
+  "created_at": "2026-05-28T11:06:34.644566",
+  "last_accessed": "2026-05-28T11:08:00.465320",
+  "conversation_history": [
+    {
+      "turn_id": "1e091a23-fa58-4d4a-b7a9-73b45670d04b",
+      "timestamp": "2026-05-28T11:08:00.467835",
+      "role": "user",
+      "content": "impact of health  and technology ",
+      "context_used": [],
+      "metadata": {}
+    }
+  ],
+  "summary": "",
+  "important_facts": [],
+  "queries_count": 1,
+  "total_tokens_used": 0,
+  "memory_metrics": []
+}

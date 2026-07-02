@@ -1,0 +1,21 @@
+{
+  "session_id": "c90c6ea1-f4b0-4248-89d6-1ccb978c1d87",
+  "user_id": "mahek",
+  "created_at": "2026-05-28T11:19:57.526514",
+  "last_accessed": "2026-05-28T11:22:17.514136",
+  "conversation_history": [
+    {
+      "turn_id": "9dbccfdb-5e0c-4229-bd21-488b601a12cf",
+      "timestamp": "2026-05-28T11:22:17.517188",
+      "role": "user",
+      "content": "limitations of this",
+      "context_used": [],
+      "metadata": {}
+    }
+  ],
+  "summary": "",
+  "important_facts": [],
+  "queries_count": 1,
+  "total_tokens_used": 0,
+  "memory_metrics": []
+}

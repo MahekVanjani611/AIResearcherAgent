@@ -1,0 +1,29 @@
+{
+  "session_id": "4e1805a2-70d0-477b-888b-cd8b9e4e7dc0",
+  "user_id": "mahek",
+  "created_at": "2026-05-28T11:27:08.690012",
+  "last_accessed": "2026-05-28T11:30:00.599510",
+  "conversation_history": [
+    {
+      "turn_id": "5b014505-bc4f-4854-ab94-7b4499a44d97",
+      "timestamp": "2026-05-28T11:28:01.653518",
+      "role": "user",
+      "content": "health drawbacks currently due to ai",
+      "context_used": [],
+      "metadata": {}
+    },
+    {
+      "turn_id": "9b5f0426-b60d-4fe4-b55f-bbbf905857bf",
+      "timestamp": "2026-05-28T11:30:00.603534",
+      "role": "user",
+      "content": "current limitations",
+      "context_used": [],
+      "metadata": {}
+    }
+  ],
+  "summary": "",
+  "important_facts": [],
+  "queries_count": 2,
+  "total_tokens_used": 0,
+  "memory_metrics": []
+}

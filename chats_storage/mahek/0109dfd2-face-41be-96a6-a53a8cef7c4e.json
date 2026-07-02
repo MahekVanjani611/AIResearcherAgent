@@ -1,0 +1,28 @@
+{
+  "chat_id": "0109dfd2-face-41be-96a6-a53a8cef7c4e",
+  "title": "Chat 2026-07-03 00:13",
+  "created_at": "2026-07-03T00:13:58.810380",
+  "last_updated": "2026-07-03T00:20:27.303127",
+  "messages": [
+    {
+      "id": "8d61d006-1341-45cd-9fb0-cc118988caa2",
+      "role": "user",
+      "content": "IMPACT OF LLMS IN HEALTHCARE",
+      "timestamp": "2026-07-03T00:14:45.460578",
+      "metadata": {}
+    },
+    {
+      "id": "d6ba0682-a88b-435c-bc94-f3c030758e97",
+      "role": "user",
+      "content": "Can LLMs replace doctors?",
+      "timestamp": "2026-07-03T00:20:27.303101",
+      "metadata": {}
+    }
+  ],
+  "metadata": {
+    "initial_topic": "",
+    "total_messages": 2,
+    "research_mode": "interrupts"
+  },
+  "session_id": "2dce657d-3031-48c9-b782-77f6d4884fcb"
+}

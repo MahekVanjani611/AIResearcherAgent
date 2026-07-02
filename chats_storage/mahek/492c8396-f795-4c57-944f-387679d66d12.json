@@ -1,0 +1,21 @@
+{
+  "chat_id": "492c8396-f795-4c57-944f-387679d66d12",
+  "title": "Chat 2026-07-03 00:33",
+  "created_at": "2026-07-03T00:33:27.999008",
+  "last_updated": "2026-07-03T00:39:08.731925",
+  "messages": [
+    {
+      "id": "33c1f3dc-955b-4d92-9051-84bac1dc4098",
+      "role": "user",
+      "content": "What happens if the LLM gives incorrect medical advice?",
+      "timestamp": "2026-07-03T00:39:08.731916",
+      "metadata": {}
+    }
+  ],
+  "metadata": {
+    "initial_topic": "",
+    "total_messages": 1,
+    "research_mode": "interrupts"
+  },
+  "session_id": "1e0dcc88-be21-4530-aa76-b2602d537ddf"
+}

@@ -1,0 +1,57 @@
+# Updated requirements.txt - All dependencies for enhanced project
+
+# Core Framework
+streamlit
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+langgraph
+
+# UI & Visualization
+plotly
+pandas
+matplotlib
+altair
+streamlit-option-menu
+streamlit-agraph
+
+# Vector Database & Embeddings
+chromadb
+google-generativeai
+numpy
+
+# Authentication & Security
+bcrypt
+python-dotenv
+pydantic
+
+# Data Processing & Tools
+requests 
+beautifulsoup4 
+PyPDF2
+lxml 
+feedparser 
+
+# Real-time Data
+yfinance
+newsapi-python
+
+# Search & Scraping
+tavily-python
+selenium # Optional: for JavaScript-heavy sites
+
+# Async & Threading
+aiohttp
+asyncio-contextmanager
+
+# Utilities
+python-dateutil
+pytz
+uuid6
+
+# Development (Optional)
+pytest
+black
+flake8
+mem0ai

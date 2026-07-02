@@ -1,0 +1,29 @@
+{
+  "session_id": "2dce657d-3031-48c9-b782-77f6d4884fcb",
+  "user_id": "MAHEK",
+  "created_at": "2026-07-03T00:13:50.905141",
+  "last_accessed": "2026-07-03T00:20:27.388934",
+  "conversation_history": [
+    {
+      "turn_id": "00d9405a-89c4-4372-b601-cd172393cc9a",
+      "timestamp": "2026-07-03T00:14:45.507309",
+      "role": "user",
+      "content": "IMPACT OF LLMS IN HEALTHCARE",
+      "context_used": [],
+      "metadata": {}
+    },
+    {
+      "turn_id": "78ecdcba-fa1d-4493-9056-98aa27cd3cb9",
+      "timestamp": "2026-07-03T00:20:27.392297",
+      "role": "user",
+      "content": "Can LLMs replace doctors?",
+      "context_used": [],
+      "metadata": {}
+    }
+  ],
+  "summary": "",
+  "important_facts": [],
+  "queries_count": 2,
+  "total_tokens_used": 0,
+  "memory_metrics": []
+}
