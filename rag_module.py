@@ -18,13 +18,19 @@ load_dotenv()
 # These are the preferred imports for LangChain v1+; they may vary by version.
 try:
     from langchain_chroma import Chroma
+except ImportError:
+    raise ImportError(
+        "Missing Chroma vector store support. Install: langchain-chroma, chromadb, networkx"
+    )
+
+try:
     from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
     from langchain_core.documents import Document
     from langchain_core.messages import HumanMessage, SystemMessage
 except ImportError as e:
     raise ImportError(
-        "Missing dependencies for RAG module. Install: langchain, langchain-chroma, "
-        "langchain-google-genai, chromadb, networkx" 
+        "Missing dependencies for RAG module. Install: langchain, langchain-google-genai, "
+        "chromadb, networkx"
     ) from e
 
 try:
@@ -399,11 +405,20 @@ class RAGManager:
         self._doc_cache = {}
         self._cache_timestamp = datetime.now()
 
-        self.vector_store = Chroma(
-            persist_directory=str(BASE_DIR),
-            embedding_function=self.embeddings,
-            collection_name=f"kg_user_{user_id}"
-        )
+        vector_store_file = BASE_DIR / f"vector_store_{user_id}.json"
+        if Chroma is not None:
+            try:
+                self.vector_store = Chroma(
+                    persist_directory=str(BASE_DIR),
+                    embedding_function=self.embeddings,
+                    collection_name=f"kg_user_{user_id}"
+                )
+            except Exception as e:
+                logger.warning(f"Falling back to local vector store for {user_id}: {e}")
+                self.vector_store = SimpleVectorStore(vector_store_file)
+        else:
+            logger.warning(f"Chroma unavailable. Using local vector store fallback for {user_id}.")
+            self.vector_store = SimpleVectorStore(vector_store_file)
 
     def add_to_memory(self, text: str, metadata: Optional[Dict] = None):
         """Add document to memory with session tracking"""
