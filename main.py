@@ -564,11 +564,18 @@ def store_in_mem0(user_question: str, assistant_answer: str):
 def build_counter_question_response(counter_question: str) -> str:
     """Answer a follow-up question using the current chat context plus saved memory."""
     context_sections = []
+    topic_anchor = None
 
     if st.session_state.chat_manager and st.session_state.current_chat_id:
         chat_context = st.session_state.chat_manager.get_chat_context(st.session_state.current_chat_id, last_n_messages=12)
         if chat_context:
             context_sections.append(f"Recent chat context:\n{chat_context}")
+
+            # Use the most recent user topic as the anchor when the follow-up uses vague references like "this".
+            for line in reversed(chat_context.splitlines()):
+                if line.startswith("USER:"):
+                    topic_anchor = line.replace("USER:", "", 1).strip()
+                    break
 
     if st.session_state.final_report:
         context_sections.append(f"Latest research report:\n{st.session_state.final_report[:8000]}")
@@ -581,6 +588,19 @@ def build_counter_question_response(counter_question: str) -> str:
                 context_sections.append(memory_context)
 
             memory_hits = st.session_state.mem0_manager.search_memories(counter_question, limit=5)
+
+            # If the direct search is weak for a vague question, add the most recent stored memory as a topic anchor.
+            if not memory_hits:
+                cached_memories = st.session_state.mem0_manager.memory_cache.get("memories", [])
+                if cached_memories:
+                    latest_memory = cached_memories[-1]
+                    topic_anchor = topic_anchor or latest_memory.get("user_message", "").strip() or None
+                    if latest_memory.get("user_message") or latest_memory.get("assistant_response"):
+                        context_sections.append(
+                            "Most recent stored memory:\n"
+                            f"- User: {latest_memory.get('user_message', '')}\n"
+                            f"- Assistant: {latest_memory.get('assistant_response', '')}"
+                        )
         except Exception as e:
             logger.debug(f"Mem0 context lookup note: {e}")
 
@@ -601,9 +621,13 @@ Rules:
 - Be concise and directly address the question.
 - If the context is insufficient, say what is missing instead of inventing details.
 - Prefer the user's prior saved preferences, past questions, and recent research context.
+- If the follow-up uses words like "this" or "it", resolve them against the topic anchor before answering.
 
 Follow-up question:
 {counter_question}
+
+Topic anchor:
+{topic_anchor or 'No explicit anchor found'}
 
 Context:
 {chr(10).join(context_sections) if context_sections else 'No additional context available.'}
